@@ -8,7 +8,12 @@ const CPUSCORE = document.getElementById("computer");
 buttonsEvent(BUTTONS);
 
 function checkWin(a, b) {
-    if( Number(a) + Number(b) === 3) alert("Want to replay?")
+  if (Number(a) + Number(b) === 3) {
+    const WINNER = USERSCORE.textContent > CPUSCORE.textContent ? "user" : "computer"
+    alert(`${WINNER} has won`);
+    USERSCORE.textContent = "0";
+    CPUSCORE.textContent = "0";
+  }
 }
 
 function computerPlay() {
@@ -43,7 +48,7 @@ function buttonsEvent(BUTTONS) {
       const WINNER = roundWinner(USERPLAY, CPUPLAY);
       const SCOREUPDATE = document.getElementById(WINNER);
       if (SCOREUPDATE) ++SCOREUPDATE.textContent;
-      checkWin(USERSCORE.textContent, CPUSCORE.textContent, "btnPlayer");
+      checkWin(USERSCORE.textContent, CPUSCORE.textContent, WINNER);
     });
   }
 }
